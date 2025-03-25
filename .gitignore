@@ -1,0 +1,5 @@
+#Remover o lock
+package-lock.json
+
+#Remover os modulos
+node_modules
