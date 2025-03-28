@@ -6,6 +6,7 @@ import Multiplicacao from './multiplicacao';
 import Divisao from './divisao';
 import Potenciacao from './potenciacao';
 import Radiciacao from './radiciacao';
+import Bhaskara from './bhaskara';
 
 let mensagem = new Mensagens()
 
@@ -17,9 +18,12 @@ let iniciar = () => {
 
     leitor.question(`Quais os números e a operação a ser realizada?\n`, (valor) => {
         let instrucoes = valor.split(' ')
-        let numero1 = Number(instrucoes[0])
-        let numero2 = Number(instrucoes[1])
-        let operacao = String(instrucoes[2])
+        let operacao = instrucoes[instrucoes.length - 1]
+        let numeros = instrucoes.slice(0, -1).map(Number)
+        
+        let numero1 = numeros[0]
+        let numero2 = numeros[1]
+        let numero3 = numeros[2]
 
         if (instrucoes.length == 1) {
             operacao = instrucoes[0]
@@ -57,6 +61,11 @@ let iniciar = () => {
             case 'Radiciar':
                 calculo = new Radiciacao()
                 console.log(`O resultado da operação é: ${calculo.calcular(numero1, numero2)}\n`)
+                break;
+
+            case 'Bhaskara':
+                calculo = new Bhaskara()
+                console.log(`O resultado da operação é: ${calculo.calcular(numero1, numero2, numero3)}\n`)
                 break;
 
             case 'Sair':

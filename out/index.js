@@ -44,6 +44,7 @@ const multiplicacao_1 = __importDefault(require("./multiplicacao"));
 const divisao_1 = __importDefault(require("./divisao"));
 const potenciacao_1 = __importDefault(require("./potenciacao"));
 const radiciacao_1 = __importDefault(require("./radiciacao"));
+const bhaskara_1 = __importDefault(require("./bhaskara"));
 let mensagem = new mensagens_1.default();
 let iniciar = () => {
     let leitor = readline.createInterface({
@@ -52,9 +53,11 @@ let iniciar = () => {
     });
     leitor.question(`Quais os números e a operação a ser realizada?\n`, (valor) => {
         let instrucoes = valor.split(' ');
-        let numero1 = Number(instrucoes[0]);
-        let numero2 = Number(instrucoes[1]);
-        let operacao = String(instrucoes[2]);
+        let operacao = instrucoes[instrucoes.length - 1];
+        let numeros = instrucoes.slice(0, -1).map(Number);
+        let numero1 = numeros[0];
+        let numero2 = numeros[1];
+        let numero3 = numeros[2];
         if (instrucoes.length == 1) {
             operacao = instrucoes[0];
         }
@@ -84,6 +87,10 @@ let iniciar = () => {
             case 'Radiciar':
                 calculo = new radiciacao_1.default();
                 console.log(`O resultado da operação é: ${calculo.calcular(numero1, numero2)}\n`);
+                break;
+            case 'Bhaskara':
+                calculo = new bhaskara_1.default();
+                console.log(`O resultado da operação é: ${calculo.calcular(numero1, numero2, numero3)}\n`);
                 break;
             case 'Sair':
                 console.log('Até!');
